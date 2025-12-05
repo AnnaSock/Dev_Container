@@ -1,0 +1,58 @@
+{
+  "name": "Multi-Language Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/php:1": {
+      "version": "8.3"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/Bureau/dev_container/workspace,target=/workspace,type=bind,consistency=cached"
+  ],
+
+  "forwardPorts": [8000, 8080, 8081, 8082, 8083],
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "felixbecker.php-debug",
+        "ms-vscode.vscode-typescript-next",
+        "dbaeumer.vscode-eslint",
+        "dart-code.dart-code",
+        "dart-code.flutter",
+        "ritwickdey.liveserver",
+        "rangav.vscode-thunder-client",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker",
+        "esbenp.prettier-vscode",
+        "xdebug.php-pack"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/bin/php",
+        "php.suggest.basic": false,
+        "intelephense.diagnostics.enable": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  "remoteUser": "codespace",
+
+  "remoteEnv": {
+    "NODE_ENV": "development",
+    "FLUTTER_ROOT": "/usr/local/flutter"
+  }
+}

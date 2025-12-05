@@ -1,0 +1,71 @@
+# Systèmes et éditeurs
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Environnements / secrets
+.env
+.env.*.local
+.vscode/
+.idea/
+*.key
+*.pem
+
+# Ignorer env spécifiques au workspace php et fichiers d'env locaux
+workspace/php/.env
+.env.php
+
+# Node
+node_modules/
+dist/
+build/
+
+# PHP / Laravel
+/vendor/
+.phpunit.result.cache
+/storage/*.key
+/storage/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*.php
+
+# Composer lock can be committed; vendor should be ignored
+composer.phar
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub/
+build/
+ios/Pods/
+android/.gradle/
+pubspec.lock
+
+# Workspaces montés localement (évite d'ajouter fichiers de projet locaux)
+workspace/
+workspace/*
+
+# Docker-related host folders (si présents)
+postgres_data/
+mysql_data/
+*.envrc
+
+# IDE / OS caches
+*.iml
+/.idea
+.vscode-server/
+.cache/
+.local/
+
+# Misc
+coverage/
+tmp/
