@@ -1,5 +1,22 @@
 # Environnement Dev Multi-Langages Docker + VS Code Server + DBs
 
+Deux approches de développement
+
+Vous pouvez développer avec ce projet de deux façons :
+
+**1) Docker Local (recommandé pour développement intensif)**
+- Prérequis : Docker + Docker Compose + Git
+- Avantages : Performance optimale, gratuit, contrôle total, pas de limites.
+- Cas d'usage : Développement quotidien, production-like, travail lourd.
+- Démarrage : `docker compose up -d <service>` → VS Code Server local sur 8081/8082/8083.
+
+**2) GitHub Codespaces (recommandé pour flexibilité)**
+- Prérequis : Compte GitHub + navigateur Internet
+- Avantages : Accès depuis n'importe quel PC, environnement préconfiguré, pas d'installation locale.
+- Limites : 60h/mois gratuit, puis $0.18/h; performances moindres que Docker local.
+- Cas d'usage : Accès occasionnel, partage rapide, travail depuis plusieurs machines.
+- Démarrage : Bouton "Code" → "Codespaces" → "Create codespace on main".
+
 Structure:
 - docker/flutter/Dockerfile
 - docker/php-laravel/Dockerfile
@@ -137,16 +154,6 @@ Connexions aux bases depuis les conteneurs
   - Si l'app écoute un port HTTP, exposez-le via docker-compose.yml si vous voulez y accéder depuis l'hôte.
   - Pour rebuild : docker compose build node
 
-Dépannage rapide
-- Si les DBs ne sont pas initialisées : vérifiez que init-postgres.sh est exécutable et monté dans le conteneur postgres (chmod +x init-postgres.sh).
-- Forcer la reconstruction : docker compose build --no-cache <service>
-- Supprimer volumes (attention données): docker compose down -v
-
-Bonnes pratiques
-- Ne commitez pas de .env ni de secrets (le .gitignore fourni couvre ces cas).
-- Pour modifications Dockerfile, rebuild + up -d.
-- Gardez workspace/ monté en volume pour travail en temps réel.
-
 Utiliser dans GitHub Codespaces
 
 Alternative sans Docker (recommandé pour Codespaces) :
@@ -197,3 +204,14 @@ Avantages Codespaces :
 - Tous les outils installés directement.
 - Extensions VS Code configurées automatiquement.
 - Accès depuis n'importe quel navigateur.
+
+Dépannage rapide
+- Si les DBs ne sont pas initialisées : vérifiez que init-postgres.sh est exécutable et monté dans le conteneur postgres (chmod +x init-postgres.sh).
+- Forcer la reconstruction : docker compose build --no-cache <service>
+- Supprimer volumes (attention données): docker compose down -v
+
+Bonnes pratiques
+- Ne commitez pas de .env ni de secrets (le .gitignore fourni couvre ces cas).
+- Pour modifications Dockerfile, rebuild + up -d.
+- Gardez workspace/ monté en volume pour travail en temps réel.
+- Si vous alternez Docker local ↔ Codespaces, nettoyez les conteneurs/volumes locaux régulièrement pour éviter les conflits.
