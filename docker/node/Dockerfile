@@ -25,4 +25,8 @@ EXPOSE 8080
 
 USER dev
 ENV HOME=/home/dev
+# Ajout d'un healthcheck pour vérifier que code-server répond sur le port 8080
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD curl -f http://127.0.0.1:8080/ || exit 1
+
 CMD ["sh", "-c", "PASSWORD=${PASSWORD} code-server --bind-addr 0.0.0.0:8080 --auth password /workspace"]
